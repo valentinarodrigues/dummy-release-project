@@ -12,7 +12,7 @@ jobs:
       - name: Post to Slack
         # Requires SLACK_WEBHOOK_URL secret to be set in repo settings
         if: ${{ vars.NOTIFY_SLACK == 'true' }}
-        uses: slackapi/slack-github-action@v1
+        uses: slackapi/slack-github-action@v3
         with:
           payload: |
             {
