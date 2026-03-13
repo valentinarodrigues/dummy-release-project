@@ -1,0 +1,33 @@
+name: Notify on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    name: Send release notifications
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to Slack
+        # Requires SLACK_WEBHOOK_URL secret to be set in repo settings
+        if: ${{ vars.NOTIFY_SLACK == 'true' }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": ":rocket: *${{ github.event.release.tag_name }}* has been released!\n${{ github.event.release.html_url }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Create release summary
+        run: |
+          echo "## Release ${{ github.event.release.tag_name }} published" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Published by:** ${{ github.event.release.author.login }}" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** ${{ github.event.release.html_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Release notes" >> $GITHUB_STEP_SUMMARY
+          echo "${{ github.event.release.body }}" >> $GITHUB_STEP_SUMMARY

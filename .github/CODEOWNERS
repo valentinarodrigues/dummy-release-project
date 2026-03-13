@@ -1,0 +1,8 @@
+# Default owner for everything
+* @valentinarodrigues
+
+# Source code
+src/ @valentinarodrigues
+
+# CI/CD changes require extra review
+.github/ @valentinarodrigues

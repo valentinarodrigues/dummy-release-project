@@ -1,0 +1,23 @@
+area: source:
+  - changed-files:
+      - any-glob-to-any-file: src/**
+
+area: tests:
+  - changed-files:
+      - any-glob-to-any-file: tests/**
+
+area: ci:
+  - changed-files:
+      - any-glob-to-any-file: .github/**
+
+area: docs:
+  - changed-files:
+      - any-glob-to-any-file: "**/*.md"
+
+area: config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.json"
+          - "*.js"
+          - "!src/**"
+          - "!tests/**"
