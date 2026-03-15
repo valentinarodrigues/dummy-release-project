@@ -23,3 +23,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  # Chain prod deploy and notify directly from this workflow to work around
+  # the GitHub limitation where GITHUB_TOKEN-triggered releases don't fire
+  # the `release` event for other workflows.
+  deploy-prod:
+    name: Deploy to Production
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    uses: ./.github/workflows/deploy-prod.yml
+
+  notify:
+    name: Notify on Release
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    uses: ./.github/workflows/notify-release.yml
