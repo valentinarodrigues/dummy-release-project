@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require("../src/index");
+const { add, subtract, multiply, divide, modulo } = require("../src/index");
 
 describe("add", () => {
   test("adds two positive numbers", () => expect(add(2, 3)).toBe(5));
@@ -17,5 +17,12 @@ describe("divide", () => {
   test("divides two numbers", () => expect(divide(10, 2)).toBe(5));
   test("throws on division by zero", () => {
     expect(() => divide(1, 0)).toThrow("Division by zero");
+  });
+});
+
+describe("modulo", () => {
+  test("returns remainder", () => expect(modulo(10, 3)).toBe(1));
+  test("throws on division by zero", () => {
+    expect(() => modulo(1, 0)).toThrow("Division by zero");
   });
 });
