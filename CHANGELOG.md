@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.2.0...dummy-release-project-v0.3.0) (2026-03-23)
+
+
+### Features
+
+* add power and squareRoot functions ([#13](https://github.com/valentinarodrigues/dummy-release-project/issues/13)) ([f76f84a](https://github.com/valentinarodrigues/dummy-release-project/commit/f76f84a90e16ba71fa9973d4b4a7f881c586527d))
+
+
+### Bug Fixes
+
+* add workflow_dispatch and chain prod deploy+notify from release-please ([ee74340](https://github.com/valentinarodrigues/dummy-release-project/commit/ee74340307e9bf93171995c3e19714d3dd73436c))
+
+
+### Documentation
+
+* expand README with full automation reference ([18034f8](https://github.com/valentinarodrigues/dummy-release-project/commit/18034f80857f753341fc7d2642197e82ffa677df))
+
 ## [0.2.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.1.0...dummy-release-project-v0.2.0) (2026-03-15)
 
 
