@@ -5,6 +5,11 @@ on:
     types: [published]
   workflow_dispatch:
   workflow_call:
+    inputs:
+      tag_name:
+        description: Tag name of the release that was just published
+        required: false
+        type: string
 
 jobs:
   notify:
@@ -18,7 +23,7 @@ jobs:
         with:
           payload: |
             {
-              "text": ":rocket: *${{ github.event.release.tag_name }}* has been released!\n${{ github.event.release.html_url }}"
+              "text": ":rocket: *${{ inputs.tag_name || github.event.release.tag_name }}* has been released!\nhttps://github.com/${{ github.repository }}/releases/tag/${{ inputs.tag_name || github.event.release.tag_name }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -26,10 +31,8 @@ jobs:
 
       - name: Create release summary
         run: |
-          echo "## Release ${{ github.event.release.tag_name }} published" >> $GITHUB_STEP_SUMMARY
+          TAG="${{ inputs.tag_name || github.event.release.tag_name }}"
+          echo "## Release ${TAG} published" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Published by:** ${{ github.event.release.author.login }}" >> $GITHUB_STEP_SUMMARY
-          echo "**URL:** ${{ github.event.release.html_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Release notes" >> $GITHUB_STEP_SUMMARY
-          echo "${{ github.event.release.body }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Repo:** ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** https://github.com/${{ github.repository }}/releases/tag/${TAG}" >> $GITHUB_STEP_SUMMARY

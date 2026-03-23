@@ -1,10 +1,16 @@
 name: Deploy to Production
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
   workflow_call:
+    inputs:
+      tag_name:
+        description: Git tag to release after a successful deploy
+        required: false
+        type: string
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -31,8 +37,19 @@ jobs:
 
       - name: Deploy to production
         run: |
-          echo "Deploying release ${{ github.event.release.tag_name }} to production..."
+          echo "Deploying ${{ inputs.tag_name || 'latest' }} to production..."
           # Replace with your actual deploy command, e.g.:
           # npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
           # aws s3 sync dist/ s3://my-prod-bucket
           echo "Production deploy complete."
+
+      # Release is created here, AFTER a successful deploy.
+      - name: Create GitHub Release
+        if: ${{ inputs.tag_name != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ inputs.tag_name }}" \
+            --title "${{ inputs.tag_name }}" \
+            --notes-file CHANGELOG.md \
+            --repo "${{ github.repository }}"
