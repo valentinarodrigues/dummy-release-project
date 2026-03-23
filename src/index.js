@@ -33,4 +33,9 @@ function squareRoot(n) {
   return Math.sqrt(n);
 }
 
-module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot };
+function clamp(value, min, max) {
+  if (min > max) throw new Error("min cannot be greater than max");
+  return Math.min(Math.max(value, min), max);
+}
+
+module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot, clamp };

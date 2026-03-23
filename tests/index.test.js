@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide, modulo, power, squareRoot } = require("../src/index");
+const { add, subtract, multiply, divide, modulo, power, squareRoot, clamp } = require("../src/index");
 
 describe("add", () => {
   test("adds two positive numbers", () => expect(add(2, 3)).toBe(5));
@@ -30,6 +30,15 @@ describe("squareRoot", () => {
   test("returns square root", () => expect(squareRoot(9)).toBe(3));
   test("throws on negative input", () => {
     expect(() => squareRoot(-1)).toThrow("Cannot take square root of a negative number");
+  });
+});
+
+describe("clamp", () => {
+  test("returns value when within range", () => expect(clamp(5, 1, 10)).toBe(5));
+  test("clamps to min when below range", () => expect(clamp(-5, 0, 10)).toBe(0));
+  test("clamps to max when above range", () => expect(clamp(15, 0, 10)).toBe(10));
+  test("throws when min > max", () => {
+    expect(() => clamp(5, 10, 0)).toThrow("min cannot be greater than max");
   });
 });
 
