@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.6.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.5.0...dummy-release-project-v0.6.0) (2026-03-23)
+
+
+### Features
+
+* add clamp function ([#15](https://github.com/valentinarodrigues/dummy-release-project/issues/15)) ([a9da0d5](https://github.com/valentinarodrigues/dummy-release-project/commit/a9da0d5e3d84c4d88d10d187bb2d4748774aa5d0))
+* add modulo function ([#9](https://github.com/valentinarodrigues/dummy-release-project/issues/9)) ([28318b4](https://github.com/valentinarodrigues/dummy-release-project/commit/28318b45c737d262851795f078dc8b9852550137))
+* add power and squareRoot functions ([#13](https://github.com/valentinarodrigues/dummy-release-project/issues/13)) ([f76f84a](https://github.com/valentinarodrigues/dummy-release-project/commit/f76f84a90e16ba71fa9973d4b4a7f881c586527d))
+
+
+### Bug Fixes
+
+* add workflow_dispatch and chain prod deploy+notify from release-please ([ee74340](https://github.com/valentinarodrigues/dummy-release-project/commit/ee74340307e9bf93171995c3e19714d3dd73436c))
+* create GitHub release after prod deploy, not before ([f07dcc9](https://github.com/valentinarodrigues/dummy-release-project/commit/f07dcc925c62c7cddfe13a60c47666948939ebea))
+* use draft release — publish only after successful prod deploy ([000ab4f](https://github.com/valentinarodrigues/dummy-release-project/commit/000ab4f95521d54d4227c16c1e1d1eeb744a871a))
+
+
+### Documentation
+
+* expand README with full automation reference ([18034f8](https://github.com/valentinarodrigues/dummy-release-project/commit/18034f80857f753341fc7d2642197e82ffa677df))
+
 ## [0.5.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.4.0...dummy-release-project-v0.5.0) (2026-03-23)
 
 
