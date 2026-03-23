@@ -1,6 +1,6 @@
 {
   "name": "dummy-release-project",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A dummy project demonstrating a fully automated release cycle on GitHub",
   "main": "src/index.js",
   "scripts": {
