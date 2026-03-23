@@ -23,12 +23,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-          # Don't publish the GitHub Release yet — it is created at the end
-          # of the production deploy so the release only exists once the code
-          # is actually live.
-          skip-github-release: true
+          # Release Please creates a DRAFT release + git tag.
+          # The release is published only after a successful production deploy.
 
-  # Deploy to production first, then create the release as the final step.
+  # Deploy to production first, then publish the draft release as the final step.
   deploy-prod:
     name: Deploy to Production
     needs: release-please
@@ -37,7 +35,7 @@ jobs:
     with:
       tag_name: ${{ needs.release-please.outputs.tag_name }}
 
-  # Notify only after the deploy (and therefore the release) is complete.
+  # Notify only after deploy (and therefore the published release) is complete.
   notify:
     name: Notify on Release
     needs: [release-please, deploy-prod]

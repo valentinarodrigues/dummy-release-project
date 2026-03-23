@@ -5,7 +5,7 @@ on:
   workflow_call:
     inputs:
       tag_name:
-        description: Git tag to release after a successful deploy
+        description: Tag of the draft release to publish after a successful deploy
         required: false
         type: string
 
@@ -43,13 +43,14 @@ jobs:
           # aws s3 sync dist/ s3://my-prod-bucket
           echo "Production deploy complete."
 
-      # Release is created here, AFTER a successful deploy.
-      - name: Create GitHub Release
+      # Only runs if triggered by Release Please with a tag.
+      # Publishes the draft release now that production is confirmed live.
+      - name: Publish GitHub Release
         if: ${{ inputs.tag_name != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ inputs.tag_name }}" \
-            --title "${{ inputs.tag_name }}" \
-            --notes-file CHANGELOG.md \
+          gh release edit "${{ inputs.tag_name }}" \
+            --draft=false \
             --repo "${{ github.repository }}"
+          echo "Release ${{ inputs.tag_name }} is now public."
