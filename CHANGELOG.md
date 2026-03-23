@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.3.0...dummy-release-project-v0.4.0) (2026-03-23)
+
+
+### Features
+
+* add clamp function ([#15](https://github.com/valentinarodrigues/dummy-release-project/issues/15)) ([a9da0d5](https://github.com/valentinarodrigues/dummy-release-project/commit/a9da0d5e3d84c4d88d10d187bb2d4748774aa5d0))
+
+
+### Bug Fixes
+
+* create GitHub release after prod deploy, not before ([f07dcc9](https://github.com/valentinarodrigues/dummy-release-project/commit/f07dcc925c62c7cddfe13a60c47666948939ebea))
+
 ## [0.3.0](https://github.com/valentinarodrigues/dummy-release-project/compare/dummy-release-project-v0.2.0...dummy-release-project-v0.3.0) (2026-03-23)
 
 
